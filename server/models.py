@@ -22,6 +22,7 @@ class Customer(db.Model, SerializerMixin):
     #Relationship mapping the customer to the related review
     reviews = db.relationship('Review', back_populates = 'customer')
 
+    #Association proxy gets a list of items for the customer through reviews
     items = association_proxy('reviews', 'item',
                               creator = lambda item_obj: Review(item = item_obj) )
 
